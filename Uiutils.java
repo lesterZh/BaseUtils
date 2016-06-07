@@ -1,17 +1,25 @@
-package com.gaia.member.gaiatt.utils;
+package com.zhhtao.bluedev.utils;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.zhhtao.bluedev.base.MyApplication;
 
 /**
  * Created by zhangHaiTao on 2016/4/25.
  */
-public class Uiutils {
+public class UIUtils {
 
     /**
      * 可以在子线程弹出吐司，默认为短时间显示
@@ -71,12 +79,31 @@ public class Uiutils {
 
     public static boolean isInputEmpty(Activity activity, String text) {
         if (TextUtils.isEmpty(text)) {
-            Uiutils.showToast(activity, "输入不能为空");
+            UIUtils.showToast(activity, "输入不能为空");
             return false;
         } else {
             return true;
         }
     }
 
+    /**
+     * 通过弹出全局对话框显示文本内容，按返回键关闭窗口
+     * @param text
+     */
+    public static void showText(String text) {
+        int padding = 10;
+        Context context = MyApplication.getAppContext();
+        Dialog dialog = new Dialog(MyApplication.getAppContext());
+        TextView textView = new TextView(context);
+        textView.setText(text);
+        textView.setPadding(padding,padding,padding,padding);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        ScrollView scrollView = new ScrollView(context);
+        scrollView.addView(textView);
 
+        dialog.setContentView(scrollView);
+        dialog.setCancelable(true);
+        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        dialog.show();
+    }
 }

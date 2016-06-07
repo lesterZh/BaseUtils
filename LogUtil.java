@@ -1,4 +1,4 @@
-package com.zhanghaitao.mobileguard.utils;
+package com.zhhtao.bluedev.utils;
 
 import android.util.Log;
 
@@ -12,7 +12,8 @@ public class LogUtil {
 	
 	//想要屏蔽输出信息 可LEVEL=NOTHING
 	public static final int LEVEL = VERBOSE;
-	
+	private static final String TAG = "ZHT";
+
 	public static void v(String tag, String msg) {
 		if (LEVEL <= VERBOSE) {
 			Log.v(tag, msg);
@@ -30,11 +31,7 @@ public class LogUtil {
 			Log.i(tag, msg);
 		}
 	}
-	public static void i(String msg) {
-		if (LEVEL <= INFO) {
-			Log.i("ZHT", msg);
-		}
-	}
+
 	
 	public static void w(String tag, String msg) {
 		if (LEVEL <= WARN) {
@@ -47,11 +44,34 @@ public class LogUtil {
 			Log.e(tag, msg);
 		}
 	}
-	
-	public static void w(String msg) {
-		if (LEVEL <= WARN) {
-			Log.w("ZHT", msg);
+
+	public static void v(String msg) {
+		if (LEVEL <= VERBOSE) {
+			Log.v(TAG, msg);
 		}
 	}
-	
+
+	public static void i(String msg) {
+		if (LEVEL <= INFO) {
+			Log.i(TAG, msg);
+		}
+	}
+
+	public static void d(String msg) {
+		if (LEVEL <= DEBUG) {
+			Log.d(TAG, msg);
+		}
+	}
+
+	public static void w(String msg) {
+		if (LEVEL <= WARN) {
+			Log.w(TAG, msg);
+		}
+	}
+
+	public static void e(String msg) {
+		if (LEVEL <= ERROR) {
+			Log.e(TAG, msg);
+		}
+	}
 }
