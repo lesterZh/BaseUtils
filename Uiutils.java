@@ -1,4 +1,4 @@
-package com.zhhtao.bluedev.utils;
+package com.zhhtao.utils;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -14,7 +14,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zhhtao.bluedev.base.MyApplication;
 
 /**
  * Created by zhangHaiTao on 2016/4/25.
@@ -92,8 +91,30 @@ public class UIUtils {
      */
     public static void showText(String text) {
         int padding = 10;
-        Context context = MyApplication.getAppContext();
-        Dialog dialog = new Dialog(MyApplication.getAppContext());
+//        Context context = MyApplication.getAppContext();
+        Context context = null;
+        Dialog dialog = new Dialog(context);
+        TextView textView = new TextView(context);
+        textView.setText(text);
+        textView.setPadding(padding,padding,padding,padding);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        ScrollView scrollView = new ScrollView(context);
+        scrollView.addView(textView);
+
+        dialog.setContentView(scrollView);
+        dialog.setCancelable(true);
+        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        dialog.show();
+    }
+
+    /**
+     * 通过弹出全局对话框显示文本内容，按返回键关闭窗口
+     * @param text
+     */
+    public static void showText(Context context, String text) {
+        int padding = 10;
+//        Context context = MyApplication.getAppContext();
+        Dialog dialog = new Dialog(context);
         TextView textView = new TextView(context);
         textView.setText(text);
         textView.setPadding(padding,padding,padding,padding);
