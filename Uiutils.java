@@ -18,7 +18,7 @@ import android.widget.Toast;
 /**
  * Created by zhangHaiTao on 2016/4/25.
  */
-public class UIUtils {
+public class UiUtils {
 
     /**
      * 可以在子线程弹出吐司，默认为短时间显示
