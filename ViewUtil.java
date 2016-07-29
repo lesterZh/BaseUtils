@@ -34,4 +34,26 @@ public class ViewUtil {
         return xDown >= vLoc[0] && xDown <= (vLoc[0]+view.getWidth())
                 && yDown >= vLoc[1] && yDown <= (vLoc[1] + view.getHeight());
     }
+	
+	/**
+     * 判断触电是否在对应的视图区域
+     * @param view
+     * @param x
+     * @param y
+     * @return
+     */
+    private boolean isInViewZone(View view, int x, int y) {
+        Rect mChangeImageBackgroundRect = null;
+        if (null == mChangeImageBackgroundRect) {
+            mChangeImageBackgroundRect = new Rect();
+        }
+        view.getDrawingRect(mChangeImageBackgroundRect);
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+        mChangeImageBackgroundRect.left = location[0];
+        mChangeImageBackgroundRect.top = location[1];
+        mChangeImageBackgroundRect.right = mChangeImageBackgroundRect.right + location[0];
+        mChangeImageBackgroundRect.bottom = mChangeImageBackgroundRect.bottom + location[1];
+        return mChangeImageBackgroundRect.contains(x, y);
+    }
 }
