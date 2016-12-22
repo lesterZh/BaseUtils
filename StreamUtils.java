@@ -1,4 +1,4 @@
-package com.zhhtao.bluedev.utils;
+package com.zht.zhihuday.util;
 
 
 import android.content.Context;
@@ -221,5 +221,93 @@ public class StreamUtils {
         return null;
     }
 
+
+    /**
+     * 将类序列化并保存到本地文件
+     * @param obj
+     * @return
+     */
+    public static void objectToFile(Object obj,String fileName) {
+        try {
+            if (obj == null) return ;
+            FileOutputStream fos = new FileOutputStream(fileName);
+
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(obj);
+
+            fos.close();
+            oos.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @param obj
+     * @param fileName
+     * @param context
+     */
+    public static void objectToFile(Object obj,String fileName, Context context) {
+        try {
+            if (obj == null) return ;
+            FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(obj);
+
+            fos.close();
+            oos.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 将本地文件反序列化为类对象
+     * @param str
+     * @return
+     */
+    public static Object fileToObject(String fileName) {
+        try {
+            if (fileName == null) return null;
+            FileInputStream fis = new FileInputStream(fileName);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            Object obj = ois.readObject();
+            fis.close();
+            ois.close();
+            return obj;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * @param fileName
+     * @param context
+     * @return
+     */
+    public static Object fileToObject(String fileName, Context context) {
+        try {
+            if (fileName == null) return null;
+            FileInputStream fis = context.openFileInput(fileName);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            Object obj = ois.readObject();
+            fis.close();
+            ois.close();
+            return obj;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

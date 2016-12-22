@@ -6,7 +6,7 @@ import android.content.Intent;
 /**
  * Created by zhangHaiTao on 2016/4/27.
  */
-public class ZhtUtils {
+public class ZhtUtil {
 
     public static void gotoIntent(Activity activity, Class<?> cls) {
         Intent intent = new Intent(activity, cls);

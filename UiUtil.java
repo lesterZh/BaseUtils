@@ -1,4 +1,4 @@
-package com.zhhtao.utils;
+package com.zht.zhihuday.util;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -18,7 +18,7 @@ import android.widget.Toast;
 /**
  * Created by zhangHaiTao on 2016/4/25.
  */
-public class UiUtils {
+public class UiUtil {
 
     /**
      * 可以在子线程弹出吐司，默认为短时间显示
@@ -78,7 +78,7 @@ public class UiUtils {
 
     public static boolean isInputEmpty(Activity activity, String text) {
         if (TextUtils.isEmpty(text)) {
-            UIUtils.showToast(activity, "输入不能为空");
+            UiUtil.showToast(activity, "输入不能为空");
             return false;
         } else {
             return true;
