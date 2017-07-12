@@ -87,12 +87,12 @@ public class UiUtil {
 
     /**
      * 通过弹出全局对话框显示文本内容，按返回键关闭窗口
+     * 需要添加权限：<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
      * @param text
      */
-    public static void showText(String text) {
+    public static void showTextUseAppContext(Context context, String text) {
         int padding = 10;
-//        Context context = MyApplication.getAppContext();
-        Context context = null;
+//        Context context = MyApplication.get
         Dialog dialog = new Dialog(context);
         TextView textView = new TextView(context);
         textView.setText(text);
@@ -108,23 +108,22 @@ public class UiUtil {
     }
 
     /**
-     * 通过弹出全局对话框显示文本内容，按返回键关闭窗口
+     * 通过弹出对话框显示文本内容，按返回键关闭窗口
      * @param text
      */
     public static void showText(Context context, String text) {
         int padding = 10;
-//        Context context = MyApplication.getAppContext();
         Dialog dialog = new Dialog(context);
         TextView textView = new TextView(context);
         textView.setText(text);
-        textView.setPadding(padding,padding,padding,padding);
+        textView.setPadding(padding, padding, padding,padding);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         ScrollView scrollView = new ScrollView(context);
         scrollView.addView(textView);
 
         dialog.setContentView(scrollView);
         dialog.setCancelable(true);
-        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+//        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         dialog.show();
     }
 }
